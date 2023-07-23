@@ -1,0 +1,13 @@
+version: "3"
+services:
+  app:
+    build:
+      context: "./image"
+      dockerfile: Dockerfile
+    command: "bash"
+    tty: true
+    working_dir: "/home/node/ws"
+    volumes:
+      - ./ws:/home/node/ws
+    ports:
+      - 3300:3000
