@@ -1,13 +1,27 @@
 version: "3"
 services:
-  app:
+  node:
     build:
-      context: "./image"
+      context: "./image/node"
       dockerfile: Dockerfile
     command: "bash"
     tty: true
     working_dir: "/home/node/ws"
     volumes:
-      - ./ws:/home/node/ws
+      - ./ws/node:/home/node/ws
     ports:
       - 3300:3000
+
+  python:
+    build:
+      context: "./image/python"
+      dockerfile: Dockerfile
+    command: "bash"
+    environment:
+      - HTTP_PORT=5500
+    tty: true
+    working_dir: "/home/gyoukaku/ws"
+    volumes:
+      - ./ws/python:/home/gyoukaku/ws
+    ports:
+      - 5500:5500
